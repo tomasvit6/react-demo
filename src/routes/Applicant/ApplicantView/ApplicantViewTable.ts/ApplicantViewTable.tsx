@@ -39,10 +39,6 @@ export const ApplicantViewTable: React.FunctionComponent<Props> = (props) => {
           field: 'email',
         },
         {
-          title: t('applicantViewTable.table.label.email'),
-          field: 'email',
-        },
-        {
           title: t('applicantViewTable.table.label.createdAt'),
           field: 'createdAt',
         },
