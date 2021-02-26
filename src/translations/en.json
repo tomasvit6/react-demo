@@ -1,0 +1,50 @@
+{
+  "common": {
+    "goBack": "Go back",
+    "update": "Update",
+    "create": "Create",
+    "loading": "Loading...",
+    "unexpectedError": "Something went wrong"
+  },
+  "notifications": {
+    "deleteSuccess": "Successfully deleted",
+    "resetSuccess": "Successfully reset",
+    "updateSuccess": "Successfully updated",
+    "createSuccess": "Successfully created"
+  },
+  "appHeader": {
+    "title": "Demo Project",
+    "reset": "Reset"
+  },
+  "applicantView": {
+    "addApplicant": "Add applicant"
+  },
+  "applicantViewTable": {
+    "table": {
+      "title": "Applicants",
+      "label": {
+        "name": "Name",
+        "job": "Job",
+        "email": "Email",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At"
+      }
+    }
+  },
+  "applicantForm": {
+    "label": {
+      "name": "Name",
+      "job": "Job",
+      "email": "Email"
+    }
+  },
+  "applicantEdit": {
+    "title": "Applicant Edit"
+  },
+  "applicantAdd": {
+    "title": "Applicant Add"
+  },
+  "pageNotFound": {
+    "title": "Page not found."
+  }
+}
