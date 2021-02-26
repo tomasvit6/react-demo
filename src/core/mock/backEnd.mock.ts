@@ -10,7 +10,7 @@ import {
   updateApplicant,
 } from './controllers/applicant.controller';
 
-export const REST = <T>(path: PathOptions, method: FetchMethods, body = {}): Promise<T> => {
+export const REST = (path: PathOptions, method: FetchMethods, body = {}): Promise<any> => {
   // GET
   if (path.path === apiRoutes.listApplicants && method === 'GET') {
     return getApplicants();
@@ -18,17 +18,17 @@ export const REST = <T>(path: PathOptions, method: FetchMethods, body = {}): Pro
 
   // POST
   if (path.path === apiRoutes.createApplicant && method === 'POST') {
-    return addApplicant<T>(body as AddApplicantDto);
+    return addApplicant(body as AddApplicantDto);
   }
 
   // GET
   if (path.path === apiRoutes.readApplicant && method === 'GET') {
-    return getApplicant<T>(path.params?.id);
+    return getApplicant(path.params?.id);
   }
 
   // PUT
   if (path.path === apiRoutes.updateApplicant && method === 'PUT') {
-    return updateApplicant<T>(body as UpdateApplicantDto, path.params?.id);
+    return updateApplicant(body as UpdateApplicantDto, path.params?.id);
   }
 
   // DELETE
@@ -36,5 +36,5 @@ export const REST = <T>(path: PathOptions, method: FetchMethods, body = {}): Pro
     return removeApplicant(path.params?.id);
   }
 
-  return fakePromiseReject(1000, 'Unexpected error.' as any);
+  return fakePromiseReject(1000, 'Unexpected error.');
 };

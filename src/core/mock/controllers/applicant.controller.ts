@@ -5,20 +5,20 @@ import { AddApplicantDto, Applicant, UpdateApplicantDto } from '../../api/applic
 import { LS } from '../../config/constants';
 import { fakePromiseReject, fakePromiseResolve } from '../../utils/mock.utils';
 
-export const removeApplicant = <T>(id: string): Promise<T> => {
+export const removeApplicant = (id: string): Promise<string> => {
   const applicants = getLocalApplicantList();
   const updatedApplicants = applicants.filter((applicant) => applicant.id !== id);
 
   if (applicants.length === updatedApplicants.length) {
-    return fakePromiseReject(1000, 'Applicant not found!' as any);
+    return fakePromiseReject(1000, 'Applicant not found!');
   }
 
   updateLocalApplicantList(updatedApplicants);
 
-  return fakePromiseResolve<T>(500, id as any);
+  return fakePromiseResolve(500, id);
 };
 
-export const updateApplicant = <T>(data: UpdateApplicantDto, id: string): Promise<T> => {
+export const updateApplicant = (data: UpdateApplicantDto, id: string): Promise<string> => {
   const applicants = getLocalApplicantList();
   const updatedApplicants = applicants.map((applicant) => {
     return applicant.id === id
@@ -33,30 +33,30 @@ export const updateApplicant = <T>(data: UpdateApplicantDto, id: string): Promis
 
   updateLocalApplicantList(updatedApplicants);
 
-  return fakePromiseResolve<T>(1000, id as any);
+  return fakePromiseResolve(1000, id);
 };
 
-export const getApplicant = <T>(id: string): Promise<T> => {
+export const getApplicant = (id: string): Promise<Applicant | string> => {
   const applicants = getLocalApplicantList();
   const applicant = applicants.find((applicant) => applicant.id === id);
 
   if (!applicant) {
-    return fakePromiseReject(1000, 'Applicant not found!' as any);
+    return fakePromiseReject<string>(1000, 'Applicant not found!');
   }
 
-  return fakePromiseResolve<T>(1000, applicant as any);
+  return fakePromiseResolve(1000, applicant);
 };
 
-export const getApplicants = <T>(): Promise<T> => {
-  return fakePromiseResolve<T>(1000, getLocalApplicantList() as any);
+export const getApplicants = (): Promise<Applicant[]> => {
+  return fakePromiseResolve(1000, getLocalApplicantList());
 };
 
-export const addApplicant = <T>(data: AddApplicantDto): Promise<T> => {
+export const addApplicant = (data: AddApplicantDto): Promise<Applicant | string> => {
   const applicants = getLocalApplicantList();
   const foundApplicant = applicants.find((applicant) => applicant.email === data.email);
 
   if (foundApplicant) {
-    return fakePromiseReject(1000, 'Applicant with this email already exists!' as any);
+    return fakePromiseReject<string>(1000, 'Applicant with this email already exists!');
   }
 
   const newApplicant: Applicant = {
@@ -69,7 +69,7 @@ export const addApplicant = <T>(data: AddApplicantDto): Promise<T> => {
 
   updateLocalApplicantList(updatedApplicants);
 
-  return fakePromiseResolve<T>(1000, newApplicant as any);
+  return fakePromiseResolve(1000, newApplicant);
 };
 
 export const makeFakeApplicantList = (): Applicant[] => {
